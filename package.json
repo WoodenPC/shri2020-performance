@@ -24,6 +24,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-imagemin": "^7.1.0",
     "gulp-purgecss": "^2.1.0",
+    "gulp-uglify": "^3.0.2",
     "imagemin-jpeg-recompress": "^6.0.0",
     "purgecss": "^2.1.0"
   }
