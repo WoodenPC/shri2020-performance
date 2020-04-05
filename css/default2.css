@@ -104,6 +104,10 @@ img {
   border-style: none;
 }
 
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
 
 button {
   border-radius: 0;
@@ -155,6 +159,21 @@ button::-moz-focus-inner,
   padding: 0;
   border-style: none;
 }
+
+
+input[type="radio"],
+input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  -webkit-appearance: listbox;
+}
+
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -323,4 +342,26 @@ header {
 
 .card-deck .card {
   margin-bottom: 15px;
+}
+
+.purchase-list {
+  padding: 0 40px;
+}
+
+.purchase-list-wrap .card-description {
+  padding-bottom: 12px;
+}
+
+.purchase-list__item {
+  font-size: 20px;
+  position: relative;
+}
+
+.purchase-list__item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  width: 20px;
+  height: 20px;
+  background: url("../img/checked.svg");
 }
