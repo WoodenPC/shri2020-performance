@@ -6,9 +6,9 @@ const imgCompress  = require('imagemin-jpeg-recompress');
 
 gulp.task('purgecss', () => {
   return gulp.src('css/**/*.css')
-    .pipe(purgecss({
-        content: ['index.html']
-    }))
+    //.pipe(purgecss({
+    //    content: ['index.html']
+    //}))
     .pipe(cleanCss())
     .pipe(gulp.dest('build/css'))
 });
