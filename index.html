@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="js/owl-carousel/owl.carousel.css"/>
-    <script src="./js/main.js"></script>
+    <style>
+        .purchase-list-wrap {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <a target=_blank href="http://ya.ru"></a>
@@ -19,7 +23,7 @@
         <a class="header-menu__link">Устройства</a>
         <a class="header-menu__link">Сценарии</a>
     </menu>
-    <img class="header-menu__switcher" src="img/switcher.svg">
+    <img class="header-menu__switcher" src="img/switcher.svg" onclick='document.getElementsByClassName("header-menu")[0].classList.toggle("header-menu_active")'>
 </header>
 <div class="wrap">
     <div class="switch-block switch-block_active" data="feed">
@@ -153,8 +157,15 @@
                     <p class="card-source">Холодильник</p>
                     <p class="card-time">17:23, Сегодня</p>
                 </div>
-                <p class="card-description card-description_big description_critical">Кажется, в холодильнике заканчивается молоко. Вы хотите добавить его в список покупок?</p>
-                <div class="buttons-wrap"><button class="button button_yellow" type="button">Да</button><button class="button">Нет</button></div>
+                <div class="purchase-list-wrap">
+                    <p class="card-description card-description_big description_critical">Список покупок:</p>
+                    <ol class="purchase-list">
+                        <li class="purchase-list__item">Хлеб</li>
+                        <li class="purchase-list__item">Молоко</li>
+                    </ol>
+                </div>
+                <p id="fridge-description" class="card-description card-description_big description_critical">Кажется, в холодильнике заканчивается молоко. Вы хотите добавить его в список покупок?</p>
+                <div class="buttons-wrap"><button class="button button_yellow" type="button" onclick="clickOk()">Да</button><button class="button">Нет</button></div>
             </div>
             <div class="card card_size_s" style="border-radius: 22px">
                 <div class="card-heading">
@@ -210,4 +221,16 @@
         <a class="footer-menu__link" href="./assets/license.pdf" target="blank">Лицензия</a>
     </menu>
 </footer>
-</body></html>
+</body>
+
+<script>
+    function clickOk() {
+        const list = document.getElementsByClassName('purchase-list-wrap')[0];
+        const buttonsWrap = document.getElementsByClassName('buttons-wrap')[0];
+        const fridgeDesc = document.getElementById('fridge-description');
+        buttonsWrap.style.display = 'none';
+        list.style.display = 'block';
+        fridgeDesc.style.display = 'none';
+    }
+</script>
+</html>
