@@ -8,19 +8,10 @@
     <script src="https://yastatic.net/jquery/3.3.1/jquery.js"></script>
     <link rel="stylesheet" href="js/owl-carousel/owl.carousel.css"/>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
     <script src="./js/main.js"></script>
 </head>
 <body>
     <a target=_blank href="http://ya.ru"></a>
-    <div class="video-controls">
-    <div class="video-controls-wrap">
-        <p class="controls-text">Яркость</p>
-        <input type="range" class="volume-range video-control video-control_brightness" name="video-brightness-range" min="0" max="200" value="100" step="1">
-        <p class="controls-text">Контрастность</p>
-        <input type="range" class="volume-range video-control video-control_contrast" name="video-contrast-range" min="0" max="200" value="100" step="1">
-    </div>
-</div>
 <header>
     <img class="header-logo" src="img/yd2.png">
     <menu class="header-menu">
@@ -201,7 +192,7 @@
                     <p class="card-time">16:17, Сегодня</p>
                 </div>
                 <p class="card-description card-description_big description_critical">Робопылесос не смог сменить свое местоположение в течение последних 3 минут. Похоже, ему нужна помощь.
-                <div class="critical-cam" touch-action="none" style="background-position: 0px 0px; background-size: 100%; filter: brightness(100%);">
+                <div class="critical-cam" onload="initCriticalCam()" touch-action="none" style="background-position: 0px 0px; background-size: 100%; filter: brightness(100%);">
                 </div>
                 </p></div>
                 <div class="card card_size_s" style="border-radius: 22px;">

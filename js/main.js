@@ -24673,45 +24673,6 @@ selectOptions.forEach(o => {
     })
 });
 
-
-
-var storage, initCriticalCam = function () {
-    var u, m, p, v, h, y = new Array, g = document.querySelector(".critical-cam"), f = 0, S = 100, q = 100;
-    g.style.backgroundPosition = "0px 0px", g.style.backgroundSize = "100%", g.style.filter = "brightness(100%)";
-    var x = function (e, t) {
-        return t < e ? e - t : t - e
-    }, t = function (e) {
-        for (var t = 0; t < y.length; t++) if (e.pointerId == y[t].pointerId) {
-            y[t] = e;
-            break
-        }
-        if (1 == y.length && (g.style.backgroundPosition = p + e.clientX - m + "px " + (v + e.clientY - u) + "px"), 2 == y.length) {
-            var n = (r = y[0].clientX, i = y[0].clientY, c = y[1].clientX, a = y[1].clientY, l = x(r, c), s = x(i, a), d = Math.sqrt(Math.pow(l, 2) + Math.pow(s, 2)), d);
-            f < n ? q += 1 : q -= 1, g.style.backgroundSize = q + "%", f = n, zoomText.textContent = q;
-            var o = Math.atan2(y[1].clientY - y[0].clientY, y[1].clientX - y[0].clientX) * (180 / Math.PI);
-            h < o ? S += 2 : S -= 2, g.style.filter = "brightness(" + S + "%)", h = o, brightText.textContent = S
-        }
-        var r, i, c, a, l, s, d
-    }, e = function (e) {
-        g.removeEventListener("pointermove", t), n(e)
-    }, n = function (e) {
-        for (var t = 0; t < y.length; t++) if (y[t].pointerId == e.pointerId) {
-            y.splice(t, 1);
-            break
-        }
-    };
-    g.addEventListener("pointerdown", function (e) {
-        y.push(e), m = e.clientX, u = e.clientY, p = parseInt(g.style.backgroundPositionX, 10), v = parseInt(g.style.backgroundPositionY, 10), 2 == y.length && (h = Math.atan2(y[1].clientY - y[0].clientY, y[1].clientX - y[0].clientX) * (180 / Math.PI)), g.addEventListener("pointermove", t)
-    }), document.addEventListener("pointerup", e), g.addEventListener("onpointerup", e)
-};
-
-$(document).ready(function(){
-
-    var carousel = $("#carousel");
-
-    carousel.owlCarousel();
-});
-
 function status(e) {
     return 200 <= e.status && e.status < 300 ? Promise.resolve(e) : Promise.reject(new Error(e.statusText))
 }
@@ -24757,56 +24718,3 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementsByClassName("header-menu")[0].classList.toggle("header-menu_active")
     })
 }, !1);
-var initVideoObs = function () {
-    var t = 100, n = 100;
-
-    function e(e, t) {
-        if (Hls.isSupported()) {
-            var n = new Hls;
-            n.loadSource(t), n.attachMedia(e), n.on(Hls.Events.MANIFEST_PARSED, function () {
-                e.play()
-            })
-        } else e.canPlayType("application/vnd.apple.mpegurl") && (e.src = t, e.addEventListener("loadedmetadata", function () {
-            e.play()
-        }))
-    }
-
-    e(document.getElementById("video-1"), "http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fsosed%2Fmaster.m3u8"), e(document.getElementById("video-2"), "http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fcat%2Fmaster.m3u8"), e(document.getElementById("video-3"), "http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fdog%2Fmaster.m3u8"), e(document.getElementById("video-4"), "http://localhost:9191/master?url=http%3A%2F%2Flocalhost%3A3102%2Fstreams%2Fhall%2Fmaster.m3u8");
-    for (var r = function (e, t, n) {
-        null == t && (t = e.getBoundingClientRect().left), null == n && (n = e.getBoundingClientRect().top), e.style.top = -n + "px", e.style.left = -t + "px"
-    }, o = function (e) {
-        var t = e.target, n = document.querySelector(".video-controls"), o = t.parentNode.querySelector(".analyser");
-        t.classList.contains("video_active") ? (n.classList.remove("video-controls_active"), o.classList.remove("analyser_active"), t.style.width = "100%", t.style.height = "300px", r(t, 0, 0), setTimeout(function () {
-            t.classList.remove("video_active"), document.querySelector("html").style.overflow = "scroll"
-        }, 500)) : ("" == t.style.filter ? c(100, 100) : c(/brightness\(([^)]+)%\)/.exec(t.style.filter)[1], /contrast\(([^)]+)%\)/.exec(t.style.filter)[1]), document.querySelector("html").style.overflow = "hidden", n.classList.add("video-controls_active"), t.classList.add("video_active"), o.classList.add("analyser_active"), t.style.width = window.innerWidth + "px", t.style.height = window.innerHeight + "px", r(t))
-    }, i = function (e) {
-        document.querySelector(".video_active").style.filter = "brightness(" + t + "%) contrast(" + n + "%)"
-    }, c = function (e, t) {
-        document.querySelector(".video-control_brightness").value = e, document.querySelector(".video-control_contrast").value = t
-    }, a = function (e) {
-        t = e.target.value, i()
-    }, l = function (e) {
-        n = e.target.value, i()
-    }, s = function (e) {
-        var t = e.target;
-        t.classList.contains("video-control_brightness") && document.addEventListener("pointermove", a), t.classList.contains("video-control_contrast") && document.addEventListener("pointermove", l)
-    }, d = function (e) {
-        var t = document.getElementById(e.target.dataset.video);
-        t.muted = !t.muted, e.target.classList.toggle("video-volume_unmuted")
-    }, u = function (n) {
-        var e = new (window.AudioContext || window.webkitAudioContext), t = e.createMediaElementSource(n),
-            o = e.createAnalyser();
-        o.smoothingTimeConstant = .1, o.fftSize = 32;
-        var r = new Uint8Array(o.frequencyBinCount);
-        setInterval(function () {
-            o.getByteFrequencyData(r);
-            for (var e = 0, t = 0; t < r.length; t++) r[t] > e && (e = r[t]);
-            n.parentNode.querySelector(".analyser").style.height = e + "px"
-        }, 100), t.connect(o), o.connect(e.destination)
-    }, m = document.getElementsByClassName("video"), p = 0; p < m.length; p++) m[p].addEventListener("pointerdown", o), u(m[p]);
-    for (var v = document.getElementsByClassName("video-control"), h = 0; h < v.length; h++) v[h].addEventListener("pointerdown", s);
-    for (var y = document.getElementsByClassName("video-volume"), g = 0; g < y.length; g++) y[g].addEventListener("pointerdown", d);
-    document.addEventListener("pointerup", function (e) {
-        document.removeEventListener("pointermove", a), document.removeEventListener("pointermove", l)
-    })
-};
