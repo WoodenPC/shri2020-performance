@@ -237,12 +237,13 @@
                 const lazyImage = entry.target;
                 if (lazyImage.dataset.src) {
                     lazyImage.style.background = `url(${lazyImage.dataset.src})`;
+                    lazyImage.style.backgroundSize = '100%';
                 }
             }
         });
     });
 
-    const elems = document.querySelectorAll('img [data-src]');
+    const elems = document.querySelectorAll('div [data-src]');
     elems.forEach((elem) => {
         observer.observe(elem);
     });
