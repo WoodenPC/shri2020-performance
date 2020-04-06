@@ -58,7 +58,7 @@
             <div class="card card_size_s" style="border-radius: 22px;">
                 <div class="card-heading">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/robot-cleaner.svg">
+                        <img class="card-icon" data-src="img/robot-cleaner.svg">
                     </div>
                     <h3 class="card-title">Уборка закончена</h3>
                 </div>
@@ -70,7 +70,7 @@
             <div class="card card_size_s" style="border-radius: 22px;">
                 <div class="card-heading">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/router.svg">
+                        <img class="card-icon" data-src="img/router.svg">
                     </div>
                     <h3 class="card-title">Новый пользователь</h3>
                 </div>
@@ -82,7 +82,7 @@
             <div class="card card_size_m" style="border-radius: 23px">
                 <div class="card-heading">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/thermal.svg">
+                        <img class="card-icon" data-src="img/thermal.svg">
                     </div>
                     <h3 class="card-title">Изменен климатический режим</h3>
                 </div>
@@ -101,7 +101,7 @@
             <div class="card card_size_m critical" style="border-radius: 23px">
                 <div class="card-heading heading-critical">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/ac.svg">
+                        <img class="card-icon" data-src="img/ac.svg">
                     </div>
                     <h3 class="card-title">Невозможно включить кондиционер</h3>
                 </div>
@@ -113,7 +113,7 @@
             <div class="card card_size_m" style="border-radius: 23px">
                 <div class="card-heading">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/music.svg">
+                        <img class="card-icon" data-src="img/music.svg">
                     </div>
                     <h3 class="card-title">Музыка включена</h3>
                 </div>
@@ -124,7 +124,7 @@
                 <p class="card-description card-description_big description_critical">Сейчас проигрывается:</p><div class="card-data card-data_music">
                 <div class="song-area">
                     <div class="cover-wrap">
-                        <img class="cover" src="https://avatars.yandex.net/get-music-content/193823/1820a43e.a.5517056-1/m1000x1000">
+                        <img class="cover" src="img/m1000x1000.jpeg">
                     </div>
                     <div class="song-data">
                         <h4 class="song-title">Florence &amp; The Machine - Big God</h4>
@@ -141,7 +141,6 @@
                     <button class="player-control player-control_next">
                         <img src="img/Prev.svg">
                     </button>
-
                     <input type="range" class="volume-range" name="volume-range" min="0" max="100" value="50" step="1">
                     <div class="song-volume">80%</div>
                 </div>
@@ -149,7 +148,7 @@
             <div class="card card_size_m" style="border-radius: 23px">
                 <div class="card-heading">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/fridge.svg">
+                        <img class="card-icon" data-src="img/fridge.svg">
                     </div>
                     <h3 class="card-title">Заканчивается молоко</h3>
                 </div>
@@ -170,7 +169,7 @@
             <div class="card card_size_s" style="border-radius: 22px">
                 <div class="card-heading">
                     <div class="card-icon-wrap">
-                        <img class="card-icon" src="img/battery.svg">
+                        <img class="card-icon" data-src="img/battery.svg">
                     </div>
                     <h3 class="card-title">Зарядка завершена</h3>
                 </div>
@@ -187,7 +186,7 @@
                                 <div class="owl-wrapper" style="width: 18px; left: 0px; display: block;">
                                     <div class="owl-item" style="width: 9px;">
                                         <div class="carousel-element">
-                                            <img class="card-icon" src="img/cam.svg">
+                                            <img class="card-icon" data-src="img/cam.svg">
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +221,6 @@
     </menu>
 </footer>
 </body>
-
 <script>
     function clickOk() {
         const list = document.getElementsByClassName('purchase-list-wrap')[0];
@@ -232,5 +230,21 @@
         list.style.display = 'block';
         fridgeDesc.style.display = 'none';
     }
+
+    const observer = new IntersectionObserver((entries, imgObserver) => {
+        entries.forEach((entry) => {
+            if(entry.isIntersecting) {
+                const lazyImage = entry.target;
+                if (lazyImage.dataset.src) {
+                    lazyImage.src = lazyImage.dataset.src;
+                }
+            }
+        });
+    });
+
+    const elems = document.querySelectorAll('img.card-icon');
+    elems.forEach((elem) => {
+        observer.observe(elem);
+    });
 </script>
 </html>
